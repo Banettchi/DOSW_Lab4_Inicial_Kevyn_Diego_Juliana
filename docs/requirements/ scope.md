@@ -12,7 +12,7 @@ Actualmente, Bankify no cuenta con un sistema centralizado que permita registrar
 
 ### 3.1 Diagrama
 
-![image-example](images/Dia_Contexto.png)
+![Diagrama Contexto](Images/Dia_Contexto.png)
 
 ### 3.2 Actores
 
