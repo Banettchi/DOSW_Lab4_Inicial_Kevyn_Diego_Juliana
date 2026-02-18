@@ -99,3 +99,6 @@ No se identifican contradicciones directas. Sin embargo, el RF-05 genera ambigü
 ### 3.4 ¿Existe algún requerimiento que no debería realizarse?
 
 El envío del reporte tributario a la DIAN en formato JSON (RF-07) no debería implementarse en esta primera versión del producto, ya que implica integración con un sistema externo real, lo cual añade complejidad técnica y legal innecesaria para validar el modelo de negocio en el MVP.
+
+Mockup:
+https://www.figma.com/make/CXNAN20UYPS36S63EukDuD/Bankify-Deposit-Flow-Mockup?t=DVKpY1o4PHQdVDJu-20&fullscreen=1&preview-route=%2Fdashboard
