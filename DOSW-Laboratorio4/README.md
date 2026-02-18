@@ -117,8 +117,6 @@ Un pull request (PR) en GitHub es una solicitud formal para integrar los cambios
 4. Hacer clic en **"Submit review"**.
 5. Una vez aprobado, hacer clic en **"Merge pull request"**.
 
-> **Nota:** El pull request no puede ser aprobado por la misma persona que lo creó.
-
 #### g. Bibliografía
 
 - Apache Maven Project. (s.f.). *Introduction to Archetypes*. Maven. Recuperado el 18 de febrero de 2026, de https://maven.apache.org/guides/introduction/introduction-to-archetypes.html
@@ -134,57 +132,15 @@ mvn archetype:generate -DgroupId=edu.dosw.lab -DartifactId=DOSW-Laboratorio4 -Da
 
 ---
 
-## **Parte 2 – Diseño de Mockups**
+## **Parte 2 – Diagrama de Contexto**
 
-Los mockups fueron diseñados para representar las pantallas principales del sistema Bankify, cubriendo los flujos de autenticación, gestión de cuentas, depósitos y generación de reportes.
-
-### Mockup 1 – Login / Autenticación
-
-![Mockup 1 - Login](docs/Images/Mockup1.png)
-
-Pantalla de inicio de sesión donde el usuario ingresa su usuario y contraseña. El sistema redirige según el rol asignado (cliente, asesor, supervisor o gerente financiero).
-
----
-
-### Mockup 2 – Dashboard / Panel Principal
-
-![Mockup 2 - Dashboard](docs/Images/Mockup2.png)
-
-Panel principal del cliente donde puede visualizar sus cuentas activas, acceder a la consulta de saldo, realizar depósitos y generar reportes tributarios.
-
----
-
-### Mockup 3 – Gestión de Cuentas
-
-![Mockup 3 - Gestión de Cuentas](docs/Images/Mockup3.png)
-
-Módulo de gestión de cuentas bancarias. El asesor puede crear, activar, inactivar y actualizar cuentas. El cliente puede inactivar sus propias cuentas.
-
----
-
-### Mockup 4 – Realizar Depósito
-
-![Mockup 4 - Depósito](docs/Images/Mockup4.png)
-
-Pantalla para realizar un depósito. El usuario ingresa el número de cuenta destino (10 dígitos) y el monto. El sistema valida que la cuenta exista, esté activa y pertenezca a un banco registrado.
-
----
-
-### Mockup 5 – Reporte Tributario
-
-![Mockup 5 - Reporte Tributario](docs/Images/Mockup5.png)
-
-Módulo de generación de reportes tributarios. El cliente puede generar su declaración de renta en formato PDF. El gerente financiero puede generar el reporte de todas las cuentas para la DIAN en formato JSON.
-
----
-
-## **Parte 3 – Análisis de Requerimientos**
+El diagrama de contexto describe el sistema Bankify, sus actores y los sistemas externos con los que interactúa.
 
 ### Diagrama de Contexto
 
 ![Diagrama de Contexto](docs/Images/Dia_Contexto.png)
 
-#### Actores del Sistema
+### Actores del Sistema
 
 | Actor / Rol | Descripción |
 |---|---|
@@ -193,14 +149,34 @@ Módulo de generación de reportes tributarios. El cliente puede generar su decl
 | **Supervisor** | Crea, activa, inactiva, actualiza y elimina clientes del sistema |
 | **Gerente Financiero** | Genera y envía reportes tributarios de todas las cuentas a la DIAN |
 
-#### Sistemas Externos
+### Sistemas Externos
 
 | Sistema | Descripción |
 |---|---|
 | **DIAN** | Entidad tributaria colombiana que recibe reportes de declaración de renta en formato JSON |
 | **Bancos Registrados** | Entidades bancarias (ej. Bancolombia `01`, Davivienda `02`) usadas para validar los dos primeros dígitos del número de cuenta |
 
+### Alcance del Sistema
+
+**Dentro del sistema:**
+1. Autenticación de usuarios mediante usuario y contraseña.
+2. Gestión de clientes: creación, activación, inactivación, actualización y eliminación por parte del supervisor.
+3. Gestión de cuentas bancarias: creación, activación, inactivación y actualización según el rol del usuario.
+4. Consulta de saldo de cuentas por parte del cliente.
+5. Realización de depósitos a cuentas bancarias.
+6. Generación de reporte tributario en formato PDF para el cliente.
+7. Generación y envío de reportes tributarios a la DIAN en formato JSON por parte del gerente financiero.
+8. Validación de números de cuenta: exactamente 10 dígitos numéricos y pertenecientes a un banco registrado.
+
+**Fuera del sistema:**
+1. Procesamiento de pagos a terceros o transferencias entre bancos externos.
+2. Gestión de productos financieros complejos como créditos, inversiones o seguros.
+3. Integración directa con los sistemas internos de los bancos para sincronización de saldos en tiempo real.
+4. Soporte para múltiples monedas o transacciones en divisas extranjeras.
+
 ---
+
+## **Parte 3 – Definición y Análisis de Requerimientos**
 
 ### Requerimientos Funcionales
 
@@ -306,6 +282,50 @@ El **RF-07 (Envío de reporte a la DIAN en formato JSON)** no debería implement
 
 ---
 
+## **Parte 4 – Mockups y Flujos de Navegación**
+
+Los mockups fueron diseñados para el requerimiento **RF-05 (Realizar Depósito)**, cubriendo el flujo completo desde el login hasta la confirmación del depósito.
+
+### Mockup 1 – Login / Autenticación
+
+![Mockup 1 - Login](docs/Images/Mockup1.png)
+
+Pantalla de inicio de sesión donde el usuario ingresa su usuario y contraseña. El sistema redirige según el rol asignado.
+
+---
+
+### Mockup 2 – Dashboard / Panel Principal
+
+![Mockup 2 - Dashboard](docs/Images/Mockup2.png)
+
+Panel principal del cliente donde puede visualizar sus cuentas activas y acceder a las funcionalidades disponibles.
+
+---
+
+### Mockup 3 – Gestión de Cuentas
+
+![Mockup 3 - Gestión de Cuentas](docs/Images/Mockup3.png)
+
+Módulo de gestión de cuentas bancarias. El asesor puede crear, activar, inactivar y actualizar cuentas. El cliente puede inactivar sus propias cuentas.
+
+---
+
+### Mockup 4 – Realizar Depósito
+
+![Mockup 4 - Depósito](docs/Images/Mockup4.png)
+
+Pantalla para realizar un depósito. El usuario ingresa el número de cuenta destino (10 dígitos) y el monto. El sistema valida que la cuenta exista, esté activa y pertenezca a un banco registrado.
+
+---
+
+### Mockup 5 – Reporte Tributario
+
+![Mockup 5 - Reporte Tributario](docs/Images/Mockup5.png)
+
+Módulo de generación de reportes tributarios. El cliente puede generar su declaración de renta en formato PDF. El gerente financiero puede generar el reporte de todas las cuentas para la DIAN en formato JSON.
+
+---
+
 ## **Reglas de Negocio**
 
 | Regla | Descripción |
@@ -322,5 +342,5 @@ El **RF-07 (Envío de reporte a la DIAN en formato JSON)** no debería implement
 |---|---|---|---|
 | #1 | `feature/proj-structure` | Estructura del proyecto, README con preguntas teóricas, proyecto Maven | ✅ Merged |
 | #2 | `feature/proj-structure` | Reorganización de estructura: docs y README dentro de DOSW-Laboratorio4 | ✅ Merged |
-| #3 | `feature/proj-desig` | Parte 2: Mockups del sistema Bankify y diagrama de contexto | ✅ Merged |
-| #4 | `feature/proj-requirements` | Parte 3: Análisis de requerimientos y diagramas de caso de uso | ✅ Merged |
+| #3 | `feature/proj-desig` | Parte 2: Diagrama de contexto y scope | ✅ Merged |
+| #4 | `feature/proj-requirements` | Parte 3: Requerimientos y diagramas de caso de uso | ✅ Merged |
